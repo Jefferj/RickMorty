@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RMEpisodeViewController.swift
 //  RickMorty
 //
 //  Created by Jefferson Naranjo rodríguez on 11/01/23.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class RMEpisodeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
+        title = "Episodes"
     }
 }
-
