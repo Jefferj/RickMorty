@@ -54,14 +54,70 @@
 		61ADBB30296F485D0051899E /* RickMorty */ = {
 			isa = PBXGroup;
 			children = (
-				61ADBB31296F485D0051899E /* AppDelegate.swift */,
-				61ADBB33296F485D0051899E /* SceneDelegate.swift */,
-				61ADBB35296F485D0051899E /* ViewController.swift */,
-				61ADBB3A296F485F0051899E /* Assets.xcassets */,
-				61ADBB3C296F485F0051899E /* LaunchScreen.storyboard */,
+				61ADBB4E296F4DC80051899E /* Resorces */,
+				61ADBB4A296F4D320051899E /* Managers */,
+				61ADBB49296F4D230051899E /* APIClient */,
+				61ADBB48296F4D1C0051899E /* ViewModels */,
+				61ADBB47296F4D160051899E /* Views */,
+				61ADBB46296F4D0E0051899E /* Models */,
+				61ADBB45296F4CFB0051899E /* Controllers */,
 				61ADBB3F296F485F0051899E /* Info.plist */,
 			);
 			path = RickMorty;
+			sourceTree = "<group>";
+		};
+		61ADBB45296F4CFB0051899E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				61ADBB35296F485D0051899E /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		61ADBB46296F4D0E0051899E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		61ADBB47296F4D160051899E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		61ADBB48296F4D1C0051899E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		61ADBB49296F4D230051899E /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		61ADBB4A296F4D320051899E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		61ADBB4E296F4DC80051899E /* Resorces */ = {
+			isa = PBXGroup;
+			children = (
+				61ADBB31296F485D0051899E /* AppDelegate.swift */,
+				61ADBB33296F485D0051899E /* SceneDelegate.swift */,
+				61ADBB3A296F485F0051899E /* Assets.xcassets */,
+				61ADBB3C296F485F0051899E /* LaunchScreen.storyboard */,
+			);
+			path = Resorces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
