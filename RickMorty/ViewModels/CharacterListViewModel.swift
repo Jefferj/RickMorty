@@ -28,7 +28,7 @@ final class CharacterListViewModel: NSObject {
     }
     private var cellViewModels: [RMCharacterCollectionViewCellViewModel] = []
     public func fetchCharacters() {
-        RMService.shared.execute(.listCharactersRequest, expecting: RMGetCharactersResponse.self) { [weak self] result in
+        RMService.shared.execute(.listCharactersRequests, expecting: RMGetAllCharactersResponse.self) { [weak self] result in
             switch result {
             case .success(let responseModel):
                 let results = responseModel.results
