@@ -12,8 +12,7 @@ final class CharacterListViewModel: NSObject {
         RMService.shared.execute(.listCharactersRequest, expecting: RMGetCharactersResponse.self) { result in
             switch result {
             case .success(let model):
-                print("Total: "+String(model.info.pages))
-                print("Page result count: "+String(model.results.count))
+                print("Example image url: "+String(model.results.first?.image ?? "No image"))
             case .failure(let error):
                 print(String(describing: error))
             }
@@ -32,7 +31,7 @@ extension CharacterListViewModel: UICollectionViewDataSource, UICollectionViewDe
         }
         let viewModel = RMCharacterCollectionViewCellViewModel(characterName: "Afraz",
                                                                characterStatus: .alive,
-                                                               characterImageUrl: nil)
+                                                               characterImageUrl: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg"))
         cell.configure(with: viewModel)
         return cell
     }

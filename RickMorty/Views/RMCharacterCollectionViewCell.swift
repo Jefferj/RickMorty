@@ -57,8 +57,7 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
             statusLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3),
             nameLabel.bottomAnchor.constraint(equalTo: statusLabel.topAnchor, constant: -3),
         ])
-        nameLabel.backgroundColor = .red
-        statusLabel.backgroundColor = .orange
+        
     }
     
     override func prepareForReuse() {
@@ -69,6 +68,19 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with viewModel: RMCharacterCollectionViewCellViewModel){
-        
+        nameLabel.text = viewModel.characterName
+        statusLabel.text = viewModel.characterStatusText
+        viewModel.fetchImage { [weak self] result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data)
+                    self?.imageView.image = image
+                }
+            case .failure(let error):
+                print(String(describing: error))
+                break
+            }
+        }
     }
 }
