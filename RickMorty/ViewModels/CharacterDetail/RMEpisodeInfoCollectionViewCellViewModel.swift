@@ -1,8 +1,8 @@
 //
-//  RMCharacterInfoCollectionViewCellViewModel.swift
+//  RMEpisodeInfoCollectionViewCellViewModel.swift
 //  RickMorty
 //
-//  Created by Jefferson Naranjo rodríguez on 26/01/23.
+//  Created by Jefferson Naranjo rodríguez on 31/01/23.
 //
 
 import UIKit
@@ -10,45 +10,46 @@ import UIKit
 final class RMCharacterInfoCollectionViewCellViewModel {
     private let type: `Type`
     private let value: String
-    
+
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSZ"
         formatter.timeZone = .current
         return formatter
     }()
-    
+
     static let shortDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS"
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
+        formatter.timeZone = .current
         return formatter
     }()
-    
-    
+
     public var title: String {
-        self.type.displayTitle
+        type.displayTitle
     }
-    
+
     public var displayValue: String {
-        if value.isEmpty { return "None"}
+        if value.isEmpty { return "None" }
+
         if let date = Self.dateFormatter.date(from: value),
-            type == .created {
+           type == .created {
             return Self.shortDateFormatter.string(from: date)
         }
+
         return value
     }
-    
+
     public var iconImage: UIImage? {
         return type.iconImage
     }
-    
+
     public var tintColor: UIColor {
         return type.tintColor
     }
-    
-    enum `Type` : String{
+
+    enum `Type`: String {
         case status
         case gender
         case type
@@ -57,28 +58,28 @@ final class RMCharacterInfoCollectionViewCellViewModel {
         case created
         case location
         case episodeCount
-        
+
         var tintColor: UIColor {
             switch self {
             case .status:
-                return UIColor.systemCyan
+                return .systemBlue
             case .gender:
-                return UIColor.systemBlue
+                return .systemRed
             case .type:
-                return UIColor.systemRed
+                return .systemPurple
             case .species:
-                return UIColor.systemGreen
+                return .systemGreen
             case .origin:
-                return UIColor.systemOrange
+                return .systemOrange
             case .created:
-                return UIColor.systemYellow
+                return .systemPink
             case .location:
-                return UIColor.systemPurple
+                return .systemYellow
             case .episodeCount:
-                return UIColor.systemGray
+                return .systemMint
             }
         }
-        
+
         var iconImage: UIImage? {
             switch self {
             case .status:
@@ -99,25 +100,24 @@ final class RMCharacterInfoCollectionViewCellViewModel {
                 return UIImage(systemName: "bell")
             }
         }
-        
+
         var displayTitle: String {
             switch self {
             case .status,
-                    .gender,
-                    .type,
-                    .species,
-                    .origin,
-                    .created,
-                    .location:
+                .gender,
+                .type,
+                .species,
+                .origin,
+                .created,
+                .location:
                 return rawValue.uppercased()
             case .episodeCount:
-                return "Episode count"
+                return "EPISODE COUNT"
             }
         }
     }
-    init(
-        type: `Type`, value: String
-    ) {
+
+    init(type: `Type`, value: String) {
         self.value = value
         self.type = type
     }

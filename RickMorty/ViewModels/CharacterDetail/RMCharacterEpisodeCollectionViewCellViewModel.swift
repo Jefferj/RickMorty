@@ -5,7 +5,7 @@
 //  Created by Jefferson Naranjo rodríguez on 26/01/23.
 //
 
-import Foundation
+import UIKit
 
 protocol RMEpisodeDataRender {
     var name: String { get }
@@ -13,10 +13,14 @@ protocol RMEpisodeDataRender {
     var episode: String { get }
 }
 
-final class RMCharacterEpisodeCollectionViewCellViewModel {
+final class RMCharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable {
+
     private let episodeDataUrl: URL?
     private var isFetching = false
     private var dataBlock: ((RMEpisodeDataRender) -> Void)?
+
+    public let borderColor: UIColor
+
     private var episode: RMEpisode? {
         didSet {
             guard let model = episode else {
@@ -25,14 +29,18 @@ final class RMCharacterEpisodeCollectionViewCellViewModel {
             dataBlock?(model)
         }
     }
-    init(episodeDataUrl: URL?) {
+
+    // MARK: - Init
+    init(episodeDataUrl: URL?, borderColor: UIColor = .systemBlue) {
         self.episodeDataUrl = episodeDataUrl
+        self.borderColor = borderColor
     }
-    
-    public func registerForData(_ block: @escaping(RMEpisodeDataRender) -> Void) {
+
+    // MARK: - Public
+    public func registerForData(_ block: @escaping (RMEpisodeDataRender) -> Void) {
         self.dataBlock = block
     }
-    
+
     public func fetchEpisode() {
         guard !isFetching else {
             if let model = episode {
@@ -40,10 +48,14 @@ final class RMCharacterEpisodeCollectionViewCellViewModel {
             }
             return
         }
+
         guard let url = episodeDataUrl,
               let request = RMRequest(url: url) else {
             return
         }
+
+        isFetching = true
+
         RMService.shared.execute(request, expecting: RMEpisode.self) { [weak self] result in
             switch result {
             case .success(let model):
@@ -55,4 +67,13 @@ final class RMCharacterEpisodeCollectionViewCellViewModel {
             }
         }
     }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.episodeDataUrl?.absoluteString ?? "")
+    }
+
+    static func == (lhs: RMCharacterEpisodeCollectionViewCellViewModel, rhs: RMCharacterEpisodeCollectionViewCellViewModel) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+
 }
