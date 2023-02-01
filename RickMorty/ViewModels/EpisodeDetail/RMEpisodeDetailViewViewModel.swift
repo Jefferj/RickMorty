@@ -18,7 +18,14 @@ final class RMEpisodeDetailViewViewModel{
             delegate?.didFetchEpisodeDetails()
         }
     }
+    
+    enum SectionType {
+        case information(viewModels: [RMEpisodeInfoCollectionViewCellViewModel])
+        case characters(viewModels: [RMCharacterCollectionViewCellViewModel])
+    }
     public weak var delegate: RMEpisodeListViewViewModelDelegate?
+    
+    public private (set)var sections: [SectionType] = []
     
     init(endpointUrl: URL?) {
         self.endpointUrl = endpointUrl
