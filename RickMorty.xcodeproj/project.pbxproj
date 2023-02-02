@@ -150,6 +150,15 @@
 			path = APIResponseTypes;
 			sourceTree = "<group>";
 		};
+		61A7B653298C1ABF00382FE7 /* EpisodeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				61B1FF79298B13A6005E4BAE /* RMEpisodeInfoCollectionViewCell.swift */,
+				61B779C029886F8300E3640E /* RMEpisodeDetailView.swift */,
+			);
+			path = EpisodeDetail;
+			sourceTree = "<group>";
+		};
 		61A82669298315E10071455C /* Character */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,11 +241,11 @@
 		61ADBB47296F4D160051899E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				61A7B653298C1ABF00382FE7 /* EpisodeDetail */,
 				61B779C22988774800E3640E /* Episode */,
 				61A8266A298315E70071455C /* CharacterDetail */,
 				61A82669298315E10071455C /* Character */,
 				619B65CB297F117000DCF91F /* RMFooterLandingCollectionReusableView.swift */,
-				61B779C029886F8300E3640E /* RMEpisodeDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -309,7 +318,6 @@
 		61B779C22988774800E3640E /* Episode */ = {
 			isa = PBXGroup;
 			children = (
-				61B1FF79298B13A6005E4BAE /* RMEpisodeInfoCollectionViewCell.swift */,
 				61B779C32988776900E3640E /* RMEpisodeListView.swift */,
 			);
 			path = Episode;

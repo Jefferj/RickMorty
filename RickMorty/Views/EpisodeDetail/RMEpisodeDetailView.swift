@@ -7,6 +7,13 @@
 
 import UIKit
 
+protocol RMEpisodeDetailViewDelegate: AnyObject {
+    func rmEpisodeDetailView(
+        _ detailView: RMEpisodeDetailView,
+        didSelect character: RMCharacter
+    )
+}
+
 final class RMEpisodeDetailView: UIView {
     private var viewModel: RMEpisodeDetailViewViewModel?{
         didSet{
