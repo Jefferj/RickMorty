@@ -5,10 +5,11 @@
 //  Created by Jefferson Naranjo rodríguez on 11/01/23.
 //
 
+
 import UIKit
 
 /// Controller to show and search for Episodes
-final class RMEpisodeViewController: UIViewController, RMEpisodeListViewDelegate {
+final class RMEpisodeViewController: UIViewController, RMEpisodeListViewDelegate, RMCharacterListViewDelegate {
 
     private let episodeListView = RMEpisodeListView()
 
