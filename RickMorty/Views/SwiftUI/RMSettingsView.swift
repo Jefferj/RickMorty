@@ -29,7 +29,7 @@ struct RMSettingsView: View {
                         .foregroundColor(Color.red)
                         .padding(8)
                         .background(Color(viewModel.iconContainerColor))
-                        .cornerRadius(6)
+                        .cornerRadius(7)
                 }
                 Text(viewModel.title)
                     .padding(.leading, 10)
