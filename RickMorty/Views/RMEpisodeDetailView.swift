@@ -69,7 +69,8 @@ final class RMEpisodeDetailView: UIView {
         collectionView.alpha = 0
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UICollectionView.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(RMEpisodeInfoCollectionViewCell.self, forCellWithReuseIdentifier: RMEpisodeInfoCollectionViewCell.cellIdentifier)
+        collectionView.register(RMCharacterCollectionViewCell.self, forCellWithReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier)
         return collectionView
     }
     
@@ -80,14 +81,48 @@ final class RMEpisodeDetailView: UIView {
 
 extension RMEpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return viewModel?.cellViewModels.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        guard let sections = viewModel?.cellViewModels else {
+            return 0
+        }
+        let sectionType = sections[section]
+        switch sectionType {
+        case .information(let viewModels):
+            return viewModels.count
+        case .characters(let viewModels):
+            return viewModels.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let sections = viewModel?.cellViewModels else {
+            fatalError("No viewModel")
+        }
+        let sectionType = sections[section]
+        switch sectionType {
+        case .information(let viewModels):
+            let cellViewModel = viewModels[indexPath.row]
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: RMEpisodeInfoCollectionViewCell.cellIdentifier,
+                for: indexPath
+            ) as? RMEpisodeInfoCollectionViewCell else {
+                fatalError()
+            }
+        case .characters(let viewModels):
+            let cellViewModel = viewModels[indexPath.row]
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier,
+                for: indexPath
+            ) as? RMCharacterCollectionViewCell else {
+                fatalError()
+            }
+            cell.configure(with: cellViewModel)
+            return cell
+        }
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         return cell
     }
