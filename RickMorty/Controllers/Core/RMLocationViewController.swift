@@ -7,13 +7,14 @@
 
 import UIKit
 
-final class RMLocationViewController: UIViewController, RMLocationViewViewModelDelegate {
+final class RMLocationViewController: UIViewController, RMLocationViewViewModelDelegate, RMLocationViewDelegate {
     
     private let primaryView = RMLocationView()
     private let viewModel = RMLocationViewViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        primaryView.delegate = self
         view.addSubview(primaryView)
         view.backgroundColor = .systemBackground
         title = "Locations"
@@ -38,6 +39,12 @@ final class RMLocationViewController: UIViewController, RMLocationViewViewModelD
     
     @objc private func didTapSearch() {
         
+    }
+    
+    func rmLocationView(_ locationView: RMLocationView, didSelect location: RMLocation) {
+        let vc = RMLocationDetailViewController(location: location)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func didFetchInitialLocation() {
